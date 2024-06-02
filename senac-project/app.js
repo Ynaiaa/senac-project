@@ -1,10 +1,12 @@
 const express = require('express');
 const logger = require('morgan');
+const cors = require('cors');  // Importando o cors
 const router = require('./routes/router');
 
 const app = express();
 
 app.use(logger('dev'));
+app.use(cors());  // Usando o cors
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
