@@ -9,11 +9,13 @@ exports.getConsultas = async (req, res) => {
 }
 
 exports.getConsultaId = async (req, res) => {
-    const consulta = mockConsulta.listarConsultaPorId(req.params.id)
+    const consulta = mockConsulta.listarConsultaPorId(req.params.id);
 
-    if (consulta) res.status(200).json(consulta)
-    res.status(404).json({ error: `Não foi possível encontrar a consulta com id ${req.params.id}.` })
-}
+    if (consulta) {
+        return res.status(200).json(consulta);
+    }
+    return res.status(404).json({ error: 'Não foi possível encontrar a consulta com id ${req.params.id}.' });
+};
 
 exports.postConsulta = async (req, res) => {
 
