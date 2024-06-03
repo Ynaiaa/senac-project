@@ -1,4 +1,17 @@
-let pacientes = []
+let pacientes = [{
+    id: 1,
+    user_id: 1,
+    nome: 'Jõao Silva',
+    idade: 34,
+    agenda: []
+},
+{
+    id: 2,
+    user_id: 2,
+    nome: 'Marcelo Gomes',
+    idade: 28,
+    agenda: []
+}]
 
 exports.listarPacientes = () => pacientes
 

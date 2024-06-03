@@ -1,4 +1,40 @@
-let usuarios = []
+let usuarios = [{
+    id: 1,
+    type: 'paciente',
+    senha: '1234',
+    login: 'admin'
+},
+{
+    id: 2,
+    type: 'paciente',
+    senha: '1234',
+    login: 'admin'
+},
+{
+    id: 3,
+    type: 'medico',
+    senha: '1234',
+    login: 'admin'
+},
+{
+    id: 4,
+    type: 'medico',
+    senha: '1234',
+    login: 'admin'
+},
+{
+    id: 5,
+    type: 'medico',
+    senha: '1234',
+    login: 'admin'
+}
+    ,
+{
+    id: 6,
+    type: 'medico',
+    senha: '1234',
+    login: 'admin'
+}]
 
 exports.listarUsuarios = () => usuarios
 

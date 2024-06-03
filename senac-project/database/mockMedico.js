@@ -1,4 +1,31 @@
-let medicos = []
+let medicos = [{
+    id: 1,
+    user_id: 3,
+    nome: 'Augusto Pessoa',
+    categoria: 'clinico',
+    agenda: []
+},
+{
+    id: 2,
+    user_id: 4,
+    nome: 'Jorge Alves',
+    categoria: 'psicologo',
+    agenda: []
+},
+{
+    id: 3,
+    user_id: 5,
+    nome: 'Fernando Antunes',
+    categoria: 'oftalmologista',
+    agenda: []
+},
+{
+    id: 4,
+    user_id: 6,
+    nome: 'Christian Gaspar',
+    categoria: 'urologista',
+    agenda: []
+}]
 
 exports.listarMedicos = () => medicos
 
