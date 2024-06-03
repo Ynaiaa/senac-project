@@ -1,26 +1,18 @@
 import React, { useState } from 'react';
-import {
-  View, Text, StyleSheet, TextInput, Button, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { AntDesign } from '@expo/vector-icons';
-import { CheckBox } from 'react-native-elements';
 import { Calendar } from 'react-native-calendars';
-
-
-import { createStackNavigator } from '@react-navigation/stack';
 
 function Inicio() {
   return (
-        <ScrollView>
-            <View style={styles.containerka}>
-              
-            </View>
-        </ScrollView>
-    );
+    <ScrollView>
+      <View style={styles.containerka}>
+
+      </View>
+    </ScrollView>
+  );
 }
 
 // senac-project
@@ -74,7 +66,7 @@ function Agenda() {
 
 
 
-function detalhes({route}) {
+function detalhes({ route }) {
   return (
     <ScrollView>
       <View style={styles.headerImageContainer}>
@@ -90,17 +82,22 @@ const Tab = createBottomTabNavigator();
 function App() {
   return (
     <NavigationContainer>
-    <Tab.Navigator>
-      <Tab.Screen name="Inicio" component={Inicio} options={{headerShown: false,
-        tabBarLabel: "", tabBarIcon: ({ size }) => (<MaterialIcons name="home" color={'black'} size={size} />)}} />
+      <Tab.Navigator>
+        <Tab.Screen name="Inicio" component={Inicio} options={{
+          headerShown: false,
+          tabBarLabel: "", tabBarIcon: ({ size }) => (<MaterialIcons name="home" color={'black'} size={size} />)
+        }} />
 
-      <Tab.Screen name="Consultas" component={Agenda} options={{ tabBarLabel: "", tabBarIcon: ({size}) => ( 
-          <MaterialIcons name="subject" color={'black'} size={size} />)}}/>
+        <Tab.Screen name="Consultas" component={Agenda} options={{
+          tabBarLabel: "", tabBarIcon: ({ size }) => (
+            <MaterialIcons name="subject" color={'black'} size={size} />)
+        }} />
 
-      <Tab.Screen name="Detalhes" component={detalhes} options={{
-        tabBarLabel: "", tabBarIcon: ({ size }) => (<MaterialIcons name="list-alt" color={'black'} size={size} />) }} />
+        <Tab.Screen name="Detalhes" component={detalhes} options={{
+          tabBarLabel: "", tabBarIcon: ({ size }) => (<MaterialIcons name="list-alt" color={'black'} size={size} />)
+        }} />
 
-    </Tab.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
@@ -112,36 +109,36 @@ const styles = StyleSheet.create({
     margin: 20,
   },
 
-headerImageContainer: {
-  height: 347,
-  backgroundColor: '#ECECEC',
-  paddingTop: 99,
-  flexDirection: 'column',
-  alignContent: 'center',
-  alignItems: 'center',
-  ustifyContent: 'center'
-},
-popularItem: {
-  margin: 12,
-  fontSize: 9,
-  color: 'rgba(0, 0, 0, 0.6)',
-  borderWidth: 1,
-  borderColor: 'rgba(0, 0, 0, 0.6)',
-  borderRadius: 10,
-},
+  headerImageContainer: {
+    height: 347,
+    backgroundColor: '#ECECEC',
+    paddingTop: 99,
+    flexDirection: 'column',
+    alignContent: 'center',
+    alignItems: 'center',
+    ustifyContent: 'center'
+  },
+  popularItem: {
+    margin: 12,
+    fontSize: 9,
+    color: 'rgba(0, 0, 0, 0.6)',
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.6)',
+    borderRadius: 10,
+  },
 
-titleContainer: {
-  margin: 12,
-  justifyContent: 'center', // Centraliza verticalmente
-  alignItems: 'center' // Centraliza horizontalmente
-},
+  titleContainer: {
+    margin: 12,
+    justifyContent: 'center', // Centraliza verticalmente
+    alignItems: 'center' // Centraliza horizontalmente
+  },
 
-detailsTitle: {
-  justifyContent: 'center', // Centraliza verticalmente
-  alignItems: 'center', // Centraliza horizontalmente
-  fontSize: 16,
-  color: '#000000'
-},
+  detailsTitle: {
+    justifyContent: 'center', // Centraliza verticalmente
+    alignItems: 'center', // Centraliza horizontalmente
+    fontSize: 16,
+    color: '#000000'
+  },
 
 });
 
