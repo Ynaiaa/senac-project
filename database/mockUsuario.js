@@ -2,38 +2,38 @@ let usuarios = [{
     id: 1,
     type: 'paciente',
     senha: '1234',
-    login: 'admin'
+    login: 'admin1'
 },
 {
     id: 2,
     type: 'paciente',
     senha: '1234',
-    login: 'admin'
+    login: 'admin2'
 },
 {
     id: 3,
     type: 'medico',
     senha: '1234',
-    login: 'admin'
+    login: 'admin3'
 },
 {
     id: 4,
     type: 'medico',
     senha: '1234',
-    login: 'admin'
+    login: 'admin4'
 },
 {
     id: 5,
     type: 'medico',
     senha: '1234',
-    login: 'admin'
+    login: 'admin5'
 }
     ,
 {
     id: 6,
     type: 'medico',
     senha: '1234',
-    login: 'admin'
+    login: 'admin6'
 }]
 
 exports.listarUsuarios = () => usuarios

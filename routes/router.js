@@ -7,6 +7,7 @@ const medicoController = require('../controllers/controllerMedico')
 const consultasController = require('../controllers/controllerConsultas')
 
 //Usuarios
+router.post('/login', usuarioController.logarUsuario)
 router.get('/usuarios', usuarioController.getUsuario)
 router.get('/usuarios/:id', usuarioController.getUsuarioId)
 router.post('/usuarios', usuarioController.postUsuario)

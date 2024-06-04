@@ -1,4 +1,25 @@
 const mockUsuarios = require('../database/mockUsuario')
+const mockPacientes = require('../database/mockPaciente')
+const mockMedicos = require('../database/mockMedico')
+
+exports.logarUsuario = async (req, res) => {
+    const { login } = req.body
+
+    let usuarios = mockUsuarios.listarUsuarios()
+    let usuario = usuarios.find((usuario) => usuario.login === login)
+    console.log('usuario', usuario)
+    if (usuario?.type === 'paciente') {
+        let paciente = mockPacientes.listarPacientes().find((paciente) => paciente.user_id === usuario.id)
+        return res.json({ ...paciente, ...usuario })
+    } else if (usuario?.type === 'medico') {
+        let medico = mockMedicos.listarMedicos().find((medico) => medico.user_id === usuario.id)
+        return res.json({ ...medico, ...usuario })
+    } else {
+        res.json({ erro: 'Not found' })
+    }
+
+
+}
 
 exports.getUsuario = async (req, res) => {
     const usuarios = mockUsuarios.listarUsuarios()
