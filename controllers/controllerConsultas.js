@@ -2,7 +2,7 @@ const mockConsulta = require('../database/mockConsulta')
 const mockMedicos = require('../database/mockMedico')
 const mockPaciente = require('../database/mockPaciente')
 
-
+//teste
 exports.getConsultas = async (req, res) => {
     const consultas = mockConsulta.listarConsultas()
     res.status(200).json(consultas)
