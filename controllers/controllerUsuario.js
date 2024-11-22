@@ -3,22 +3,32 @@ const mockPacientes = require('../database/mockPaciente')
 const mockMedicos = require('../database/mockMedico')
 
 exports.logarUsuario = async (req, res) => {
-    const { login } = req.body
+
+    const { email, senha } = req.body
 
     let usuarios = mockUsuarios.listarUsuarios()
-    let usuario = usuarios.find((usuario) => usuario.login === login)
-    console.log('usuario', usuario)
-    if (usuario?.type === 'paciente') {
+
+    let usuario = usuarios.find((usuario) => usuario.login === email)
+
+    if (usuario?.type === 1) {
         let paciente = mockPacientes.listarPacientes().find((paciente) => paciente.user_id === usuario.id)
-        return res.json({ ...paciente, ...usuario })
-    } else if (usuario?.type === 'medico') {
+        return res.json({
+            id: paciente.id,
+            user_id: paciente.user_id,
+            nome: paciente.nome,
+            type: usuario.type
+        })
+    } else if (usuario?.type === 2) {
         let medico = mockMedicos.listarMedicos().find((medico) => medico.user_id === usuario.id)
-        return res.json({ ...medico, ...usuario })
+        return res.json({
+            id: medico.id,
+            user_id: medico.user_id,
+            nome: medico.nome,
+            type: usuario.type
+        })
     } else {
-        res.json({ erro: 'Not found' })
+        res.status(404).json({ erro: 'Not found' })
     }
-
-
 }
 
 exports.getUsuario = async (req, res) => {
@@ -34,6 +44,7 @@ exports.getUsuarioId = async (req, res) => {
 }
 
 exports.postUsuario = async (req, res) => {
+    console.log('POST | Usuárioooooo', req.body)
     const novoUsuario = mockUsuarios.criarUsuario(req.body)
 
     if (novoUsuario) return res.status(201).json(novoUsuario)

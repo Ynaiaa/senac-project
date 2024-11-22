@@ -5,37 +5,85 @@ let consultas = [{
     paciente_id: 1,
     medico_id: 1,
     data: gerarDataAleatoria(),
-    hora: Math.floor(Math.random() * (18 - 8 + 1)) + 8
+    hora: gerarDataAleatoria()
 },
 {
     id: 2,
     paciente_id: 1,
     medico_id: 2,
     data: gerarDataAleatoria(),
-    hora: Math.floor(Math.random() * (18 - 8 + 1)) + 8
+    hora: gerarDataAleatoria()
 },
 {
     id: 3,
     paciente_id: 2,
     medico_id: 3,
     data: gerarDataAleatoria(),
-    hora: Math.floor(Math.random() * (18 - 8 + 1)) + 8
+    hora: gerarDataAleatoria()
 },
 {
     id: 4,
     paciente_id: 2,
     medico_id: 4,
     data: gerarDataAleatoria(),
-    hora: Math.floor(Math.random() * (18 - 8 + 1)) + 8
+    hora: gerarDataAleatoria()
 },
 ]
 
+const mockMedicos = require('../database/mockMedico')
+const mockPaciente = require('../database/mockPaciente')
+const gerarID = require("../utils/generateRandomStringID")
+
 exports.listarConsultas = () => consultas
 
-exports.listarConsultaPorId = (id) => consultas.find((consulta) => consulta.id === id)
+exports.listarConsultaPorId = (id) => consultas.find((consulta) => consulta.id == id)
+
+exports.listarConsultasPaciente = (id) => {
+    console.log(id)
+    try {
+        const _consultas = consultas.filter((consulta) => consulta.paciente_id == id)
+        console.log(`consutlas`, consultas)
+        const result = _consultas.map((item) => {
+            console.log('item', item)
+            let medico = mockMedicos.listarMedicoPorId(item.medico_id)
+            let paciente = mockPaciente.listarPacientePorId(item.paciente_id)
+            console.log('paciente', paciente)
+            console.log('medico', medico)
+            return {
+                ...item,
+                medico_nome: medico.nome,
+                paciente_nome: paciente.nome,
+                categoria_medico: medico.categoria
+            }
+        })
+
+        return result
+    } catch (error) {
+        console.log('error listarConsultasPaciente', error)
+    }
+
+}
+
+exports.listarConsultasMedico = (id) => {
+    const _consultas = consultas.filter((consulta) => consulta.medico_id == id)
+
+    const result = _consultas.map((item) => {
+        let medico = mockMedicos.listarMedicoPorId(item.medico_id)
+        let paciente = mockPaciente.listarPacientePorId(item.paciente_id)
+
+        return {
+            ...item,
+            medico_nome: medico.nome,
+            paciente_nome: paciente.nome,
+            categoria_medico: medico.categoria
+        }
+    })
+
+    return result
+}
 
 exports.criarConsulta = (novaConsulta) => {
-    let id = Date.now().toString()
+    let id = gerarID()
 
     let novo = {
         id,
@@ -47,7 +95,8 @@ exports.criarConsulta = (novaConsulta) => {
 }
 
 exports.editarConsulta = (id, consulta) => {
-    let index = consultas.findIndex((consulta) => consulta.id === id)
+    console.log('Editar consulta', id, consulta)
+    let index = consultas.findIndex((consulta) => consulta.id == id)
 
     if (index) {
         consultas[index] = { ...consultas[index], ...consulta }
@@ -57,11 +106,18 @@ exports.editarConsulta = (id, consulta) => {
 }
 
 exports.deletarConsulta = (id) => {
-    let index = consultas.findIndex((consulta) => consulta.id === id)
 
-    if (index) {
-        consultas.splice(index, 1)
-        return true
+    try {
+        let index = consultas.findIndex((consulta) => consulta.id == id)
+
+        if (index >= 0) {
+
+            consultas.splice(index, 1)
+            return true
+        }
+        return false
+    } catch (error) {
+        console.log(error)
+        return false
     }
-    return false
 }

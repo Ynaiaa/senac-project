@@ -1,30 +1,28 @@
+const gerarID = require("../utils/generateRandomStringID")
+
 let medicos = [{
     id: 1,
     user_id: 3,
     nome: 'Augusto Pessoa',
-    categoria: 'clinico',
-    agenda: []
+    categoria: 1
 },
 {
     id: 2,
     user_id: 4,
     nome: 'Jorge Alves',
-    categoria: 'psicologo',
-    agenda: []
+    categoria: 2
 },
 {
     id: 3,
     user_id: 5,
     nome: 'Fernando Antunes',
-    categoria: 'oftalmologista',
-    agenda: []
+    categoria: 3
 },
 {
     id: 4,
     user_id: 6,
     nome: 'Christian Gaspar',
-    categoria: 'urologista',
-    agenda: []
+    categoria: 4
 }]
 
 exports.listarMedicos = () => medicos
@@ -32,7 +30,7 @@ exports.listarMedicos = () => medicos
 exports.listarMedicoPorId = (id) => medicos.find((medico) => medico.id === id)
 
 exports.criarMedico = (novoMedico) => {
-    let id = Date.now().toString()
+    let id = gerarID()
 
     let novo = {
         id,
@@ -40,6 +38,7 @@ exports.criarMedico = (novoMedico) => {
     }
 
     medicos.push(novo)
+    return novo
 }
 
 exports.editarMedico = (id, medico) => {
@@ -47,16 +46,6 @@ exports.editarMedico = (id, medico) => {
 
     if (index) {
         medicos[index] = { ...medico[index], ...medico }
-        return true
-    }
-    return false
-}
-
-exports.editarAgendaMedico = (id, consulta) => {
-    let index = medicos.findIndex((medico) => medico.id === id)
-
-    if (index) {
-        medicos[index].agenda.push(consulta)
         return true
     }
     return false
